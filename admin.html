@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin CRM & Leads Portal — athallahDsgn</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-tertiary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.95);
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      
+      --brand-primary: #0284c7;
+      --brand-primary-hover: #0369a1;
+      --brand-light: #e0f2fe;
+      
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-red: #dc2626;
+      --accent-red-light: #fee2e2;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1);
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #090d16;
+      --bg-secondary: #0f172a;
+      --bg-tertiary: #1e293b;
+      --bg-card: #131d31;
+      --bg-glass: rgba(15, 23, 42, 0.95);
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --border-subtle: #1e293b;
+      --border-strong: #334155;
+      
+      --brand-primary: #38bdf8;
+      --brand-primary-hover: #7dd3fc;
+      --brand-light: rgba(56, 189, 248, 0.15);
+      
+      --accent-emerald: #34d399;
+      --accent-emerald-light: rgba(52, 211, 153, 0.15);
+      --accent-amber: #fbbf24;
+      --accent-amber-light: rgba(251, 191, 36, 0.15);
+      --accent-red: #f87171;
+      --accent-red-light: rgba(248, 113, 113, 0.15);
+      --accent-purple: #c084fc;
+      --accent-purple-light: rgba(192, 132, 252, 0.15);
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation */
+    .admin-navbar {
+      background-color: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .admin-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-badge {
+      background-color: var(--brand-light);
+      color: var(--brand-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background-color: var(--brand-primary);
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .btn-primary {
+      color: #090d16;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--brand-primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border-subtle);
+    }
+
+    .btn-success {
+      background-color: var(--accent-emerald);
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background-color: var(--accent-red-light);
+      color: var(--accent-red);
+      border-color: var(--accent-red);
+    }
+
+    .btn-danger:hover {
+      background-color: var(--accent-red);
+      color: #ffffff;
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8125rem;
+    }
+
+    .theme-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-tertiary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Main Container */
+    .admin-main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .metric-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric-value {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .metric-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.2rem;
+    }
+
+    /* Tabs & Content */
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .dashboard-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background-color: var(--bg-tertiary);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+    }
+
+    .tab-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: none;
+      background: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background-color: var(--bg-card);
+      color: var(--brand-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Filter Controls Bar */
+    .filter-bar {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.4rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 16px;
+      height: 16px;
+    }
+
+    .filter-select {
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      outline: none;
+    }
+
+    /* Table Component */
+    .table-container {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+
+    th {
+      background-color: var(--bg-tertiary);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--bg-tertiary);
+    }
+
+    .lead-client {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .client-name {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .client-email {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-pending { background-color: var(--accent-amber-light); color: var(--accent-amber); }
+    .status-contacted { background-color: var(--brand-light); color: var(--brand-primary); }
+    .status-in_progress { background-color: var(--accent-purple-light); color: var(--accent-purple); }
+    .status-closed_won { background-color: var(--accent-emerald-light); color: var(--accent-emerald); }
+    .status-archived { background-color: var(--bg-tertiary); color: var(--text-muted); }
+
+    .tag-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      background-color: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Status Change Dropdown Select */
+    .status-dropdown {
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Modal Dialog */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: var(--shadow-xl);
+      transform: translateY(20px);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.25rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .detail-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .detail-val {
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .message-box {
+      background-color: var(--bg-tertiary);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      white-space: pre-wrap;
+    }
+
+    .empty-state {
+      padding: 3.5rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      margin: 0 auto 1rem auto;
+      opacity: 0.5;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--brand-primary);
+      color: var(--text-primary);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.875rem;
+      font-weight: 500;
+      animation: slideIn 0.2s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="admin-navbar">
+    <div class="admin-brand">
+      <a href="index.html" class="admin-logo">
+        <span style="color: var(--brand-primary);">●</span>
+        <span>athallah<strong>Dsgn.</strong></span>
+      </a>
+      <span class="admin-badge">Studio CRM & Leads Portal</span>
+    </div>
+
+    <div class="admin-nav-actions">
+      <span style="font-size: 0.8125rem; color: var(--accent-emerald); font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-emerald); display: inline-block;"></span>
+        SQLite Connected
+      </span>
+
+      <button class="theme-toggle-btn" id="theme-toggle-btn" title="Ganti Tema">
+        🌙
+      </button>
+
+      <a href="index.html" class="btn btn-secondary btn-sm">
+        ← Lihat Website
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="admin-main">
+    <!-- Key Metrics Cards -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-title">Total Prospek (Leads)</span>
+        <span class="metric-value" id="metric-total-leads">0</span>
+        <span class="metric-badge" style="color: var(--brand-primary);">✦ Masuk ke Database</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-title">Menunggu Tindak Lanjut</span>
+        <span class="metric-value" id="metric-pending-leads" style="color: var(--accent-amber);">0</span>
+        <span class="metric-badge" style="color: var(--accent-amber);">● Status: Pending</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-title">Sedang Dikerjakan</span>
+        <span class="metric-value" id="metric-progress-leads" style="color: var(--accent-purple);">0</span>
+        <span class="metric-badge" style="color: var(--accent-purple);">⚡ Proyek Aktif</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-title">Proyek Deal (Won)</span>
+        <span class="metric-value" id="metric-won-leads" style="color: var(--accent-emerald);">0</span>
+        <span class="metric-badge" style="color: var(--accent-emerald);">✓ Sukses Closing</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-title">Subscriber Newsletter</span>
+        <span class="metric-value" id="metric-subscribers">0</span>
+        <span class="metric-badge" style="color: var(--brand-primary);">✉ Email Terdaftar</span>
+      </div>
+    </div>
+
+    <!-- Dashboard Controls Header -->
+    <div class="dashboard-header">
+      <div class="dashboard-tabs">
+        <button class="tab-btn active" id="tab-leads-btn" onclick="switchTab('leads')">
+          📋 Prospek Masuk (<span id="tab-leads-count">0</span>)
+        </button>
+        <button class="tab-btn" id="tab-subscribers-btn" onclick="switchTab('subscribers')">
+          ✉ Newsletter Subscribers (<span id="tab-subscribers-count">0</span>)
+        </button>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn btn-secondary btn-sm" onclick="loadDashboardData()" title="Muat Ulang Data">
+          🔄 Refresh
+        </button>
+        <a href="api/export.php" class="btn btn-primary btn-sm" download title="Unduh data format CSV">
+          📥 Ekspor CSV
+        </a>
+      </div>
+    </div>
+
+    <!-- View 1: Leads Tab -->
+    <section id="view-leads">
+      <!-- Search & Filters -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="Cari nama klien, email, atau isi pesan..." oninput="filterLeads()">
+        </div>
+
+        <select id="filter-status" class="filter-select" onchange="filterLeads()">
+          <option value="all">Semua Status</option>
+          <option value="pending">Pending (Menunggu)</option>
+          <option value="contacted">Sudah Dihubungi</option>
+          <option value="in_progress">Sedang Dikerjakan</option>
+          <option value="closed_won">Deal / Closed Won</option>
+          <option value="archived">Diarsipkan</option>
+        </select>
+
+        <select id="filter-service" class="filter-select" onchange="filterLeads()">
+          <option value="all">Semua Layanan</option>
+          <option value="Full Product Design">Full Product Design</option>
+          <option value="Design Sprint">Design Sprint / MVP</option>
+          <option value="Design System">Design System</option>
+          <option value="UX Audit">UX Audit & CRO</option>
+          <option value="Dedicated Retainer">Dedicated Retainer</option>
+        </select>
+      </div>
+
+      <!-- Table of Leads -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Klien & Kontak</th>
+              <th>Layanan Diminta</th>
+              <th>Estimasi Anggaran</th>
+              <th>Tanggal Masuk</th>
+              <th>Ubah Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="leads-table-body">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2rem;">Memuat data dari database SQLite...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- View 2: Subscribers Tab -->
+    <section id="view-subscribers" style="display: none;">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Alamat Email</th>
+              <th>Status</th>
+              <th>Tanggal Berlangganan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="subscribers-table-body">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 2rem;">Memuat daftar subscriber...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lead Detail Modal -->
+  <div class="modal-backdrop" id="detail-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-client-name">Rincian Prospek Klien</h3>
+        <button class="modal-close-btn" onclick="closeDetailModal()">✕</button>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-label">Alamat Email</span>
+          <span class="detail-val" id="modal-client-email">-</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Layanan Diminta</span>
+          <span class="detail-val" id="modal-client-service">-</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Estimasi Anggaran</span>
+          <span class="detail-val" id="modal-client-budget">-</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Waktu Masuk</span>
+          <span class="detail-val" id="modal-client-date">-</span>
+        </div>
+      </div>
+
+      <div class="detail-item" style="margin-bottom: 0.5rem;">
+        <span class="detail-label">Pesan / Brief Proyek dari Klien</span>
+      </div>
+      <div class="message-box" id="modal-client-message">-</div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1rem;">
+        <a id="modal-mail-btn" href="#" class="btn btn-primary btn-sm">
+          ✉ Balas Email Klien
+        </a>
+        <button class="btn btn-secondary btn-sm" onclick="closeDetailModal()">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script>
+    let allLeads = [];
+    let allSubscribers = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      loadDashboardData();
+    });
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('athallah_admin_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+
+      document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('athallah_admin_theme', next);
+        updateThemeIcon(next);
+      });
+    }
+
+    function updateThemeIcon(theme) {
+      document.getElementById('theme-toggle-btn').textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tab-leads-btn').classList.toggle('active', tab === 'leads');
+      document.getElementById('tab-subscribers-btn').classList.toggle('active', tab === 'subscribers');
+      document.getElementById('view-leads').style.display = tab === 'leads' ? 'block' : 'none';
+      document.getElementById('view-subscribers').style.display = tab === 'subscribers' ? 'block' : 'none';
+    }
+
+    async function loadDashboardData() {
+      try {
+        // Load stats
+        const statsRes = await fetch('api/stats.php');
+        const statsJson = await statsRes.json();
+        if (statsJson.success) {
+          const m = statsJson.data.metrics;
+          document.getElementById('metric-total-leads').textContent = m.total_leads;
+          document.getElementById('metric-pending-leads').textContent = m.pending_leads;
+          document.getElementById('metric-progress-leads').textContent = m.in_progress_leads;
+          document.getElementById('metric-won-leads').textContent = m.won_leads;
+          document.getElementById('metric-subscribers').textContent = m.total_subscribers;
+        }
+
+        // Load consultations
+        const leadsRes = await fetch('api/consultations.php');
+        const leadsJson = await leadsRes.json();
+        if (leadsJson.success) {
+          allLeads = leadsJson.data;
+          document.getElementById('tab-leads-count').textContent = allLeads.length;
+          renderLeadsTable(allLeads);
+        }
+
+        // Load subscribers
+        const subRes = await fetch('api/newsletter.php');
+        const subJson = await subRes.json();
+        if (subJson.success) {
+          allSubscribers = subJson.data;
+          document.getElementById('tab-subscribers-count').textContent = allSubscribers.length;
+          renderSubscribersTable(allSubscribers);
+        }
+      } catch (err) {
+        console.error('Error fetching dashboard data:', err);
+        showToast('Gagal memuat data dari API. Pastikan server PHP berjalan.', 'error');
+      }
+    }
+
+    function renderLeadsTable(leads) {
+      const tbody = document.getElementById('leads-table-body');
+      if (!leads || leads.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty-state">
+              <p>Belum ada data prospek yang sesuai dengan filter.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = leads.map(lead => {
+        return `
+          <tr>
+            <td><strong>#${lead.id}</strong></td>
+            <td>
+              <div class="lead-client">
+                <span class="client-name">${escapeHtml(lead.name)}</span>
+                <span class="client-email">${escapeHtml(lead.email)}</span>
+              </div>
+            </td>
+            <td><span class="tag-badge">${escapeHtml(lead.service)}</span></td>
+            <td><span class="tag-badge" style="color: var(--brand-primary); font-weight: 700;">${escapeHtml(lead.budget)}</span></td>
+            <td style="font-size: 0.8125rem; color: var(--text-muted);">${formatDate(lead.created_at)}</td>
+            <td>
+              <select class="status-dropdown" onchange="updateLeadStatus(${lead.id}, this.value)">
+                <option value="pending" ${lead.status === 'pending' ? 'selected' : ''}>Pending</option>
+                <option value="contacted" ${lead.status === 'contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="in_progress" ${lead.status === 'in_progress' ? 'selected' : ''}>In Progress</option>
+                <option value="closed_won" ${lead.status === 'closed_won' ? 'selected' : ''}>Closed Won</option>
+                <option value="archived" ${lead.status === 'archived' ? 'selected' : ''}>Archived</option>
+              </select>
+            </td>
+            <td>
+              <div style="display: flex; gap: 0.4rem;">
+                <button class="btn btn-secondary btn-sm" onclick="viewLeadDetail(${lead.id})">
+                  Detail
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="deleteLead(${lead.id})">
+                  ✕
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderSubscribersTable(subscribers) {
+      const tbody = document.getElementById('subscribers-table-body');
+      if (!subscribers || subscribers.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="empty-state">
+              <p>Belum ada subscriber newsletter terdaftar.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = subscribers.map(sub => {
+        return `
+          <tr>
+            <td><strong>#${sub.id}</strong></td>
+            <td><strong>${escapeHtml(sub.email)}</strong></td>
+            <td><span class="status-badge status-closed_won">Aktif</span></td>
+            <td style="color: var(--text-muted); font-size: 0.8125rem;">${formatDate(sub.created_at)}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteSubscriber(${sub.id})">
+                Hapus
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterLeads() {
+      const search = document.getElementById('search-input').value.toLowerCase();
+      const status = document.getElementById('filter-status').value;
+      const service = document.getElementById('filter-service').value;
+
+      const filtered = allLeads.filter(lead => {
+        const matchesSearch = !search || 
+          lead.name.toLowerCase().includes(search) || 
+          lead.email.toLowerCase().includes(search) || 
+          lead.message.toLowerCase().includes(search);
+
+        const matchesStatus = status === 'all' || lead.status === status;
+        const matchesService = service === 'all' || lead.service.toLowerCase().includes(service.toLowerCase());
+
+        return matchesSearch && matchesStatus && matchesService;
+      });
+
+      renderLeadsTable(filtered);
+    }
+
+    async function updateLeadStatus(id, newStatus) {
+      try {
+        const res = await fetch('api/consultations.php', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, status: newStatus })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(`Status prospek #${id} berhasil diubah menjadi ${newStatus}`);
+          loadDashboardData();
+        }
+      } catch (e) {
+        showToast('Gagal mengubah status', 'error');
+      }
+    }
+
+    async function deleteLead(id) {
+      if (!confirm(`Apakah Anda yakin ingin menghapus data prospek #${id}?`)) return;
+
+      try {
+        const res = await fetch('api/consultations.php', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast(`Prospek #${id} telah dihapus.`);
+          loadDashboardData();
+        }
+      } catch (e) {
+        showToast('Gagal menghapus prospek', 'error');
+      }
+    }
+
+    async function deleteSubscriber(id) {
+      if (!confirm(`Hapus subscriber #${id}?`)) return;
+
+      try {
+        const res = await fetch('api/newsletter.php', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Subscriber berhasil dihapus.');
+          loadDashboardData();
+        }
+      } catch (e) {
+        showToast('Gagal menghapus subscriber', 'error');
+      }
+    }
+
+    function viewLeadDetail(id) {
+      const lead = allLeads.find(l => l.id === id);
+      if (!lead) return;
+
+      document.getElementById('modal-client-name').textContent = `Prospek: ${lead.name}`;
+      document.getElementById('modal-client-email').textContent = lead.email;
+      document.getElementById('modal-client-service').textContent = lead.service;
+      document.getElementById('modal-client-budget').textContent = lead.budget;
+      document.getElementById('modal-client-date').textContent = formatDate(lead.created_at);
+      document.getElementById('modal-client-message').textContent = lead.message;
+
+      document.getElementById('modal-mail-btn').href = `mailto:${lead.email}?subject=Follow-up Proyek athallahDsgn&body=Halo ${encodeURIComponent(lead.name)}, terima kasih telah menghubungi athallahDsgn...`;
+
+      document.getElementById('detail-modal').classList.add('active');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detail-modal').classList.remove('active');
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    function showToast(msg, type = 'info') {
+      const c = document.getElementById('toast-container');
+      const t = document.createElement('div');
+      t.className = 'toast';
+      if (type === 'error') t.style.borderLeftColor = 'var(--accent-red)';
+      t.textContent = msg;
+      c.appendChild(t);
+      setTimeout(() => {
+        t.remove();
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
